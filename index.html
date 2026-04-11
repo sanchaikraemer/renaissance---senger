@@ -238,7 +238,63 @@ footer p{font-size:11px;color:#5A4A30;line-height:2}footer a{color:var(--gold)}
     <div class="stag">UNIDADES DISPON&Iacute;VEIS</div>
     <h2 class="sh2">Escolha a sua unidade.<br>Veja planta e condi&ccedil;&otilde;es.</h2>
     <p class="sp" style="font-size:14px">Clique para ver &aacute;rea, diferenciais, planta e parcelamento.</p>
-    <div class="ug" id="ug"></div>
+    <div class="ug" id="ug">
+<div class="ub" data-id="2s" onclick="openUnit('2s')">
+  <span class="ubg">Disponível</span>
+  <b>2 Suítes</b>
+  <span>5º ao 12º · 130 m²</span>
+  <em>A partir de R$&nbsp;730.000</em>
+  <div class="ub-cta">Ver planta e condições →</div>
+</div>
+<div class="ub" data-id="2st" onclick="openUnit('2st')">
+  <span class="ubg">Disponível</span>
+  <b>2 Suítes + Terraço</b>
+  <span>5º andar · 205 m²</span>
+  <em>R$&nbsp;880.000</em>
+  <div class="ub-cta">Ver planta e condições →</div>
+</div>
+<div class="ub" data-id="3s" onclick="openUnit('3s')">
+  <span class="ubg">Disponível</span>
+  <b>3 Suítes</b>
+  <span>5º ao 12º · 180 m²</span>
+  <em>A partir de R$&nbsp;1.080.000</em>
+  <div class="ub-cta">Ver planta e condições →</div>
+</div>
+<div class="ub" data-id="3ss" onclick="openUnit('3ss')">
+  <span class="ubg">Disponível</span>
+  <b>3 Suítes Superior</b>
+  <span>14º ao 17º · 243 m²</span>
+  <em>A partir de R$&nbsp;1.450.000</em>
+  <div class="ub-cta">Ver planta e condições →</div>
+</div>
+<div class="ub" data-id="3st" onclick="openUnit('3st')">
+  <span class="ubg">Disponível</span>
+  <b>3 Suítes + Terraço</b>
+  <span>4º e 13º · até 386 m²</span>
+  <em>A partir de R$&nbsp;1.490.000</em>
+  <div class="ub-cta">Ver planta e condições →</div>
+</div>
+<div class="ub" data-id="cob">
+  <span class="ubg sold">Vendida</span>
+  <b>Cobertura</b>
+  <span>18º andar · 4 suítes · 250 m²</span>
+  <em>Vendida</em>
+</div>
+<div class="ub" data-id="sala" onclick="openUnit('sala')">
+  <span class="ubg">Disponível</span>
+  <b>Sala Comercial</b>
+  <span>Térreo · última disponível</span>
+  <em>R$&nbsp;1.140.000</em>
+  <div class="ub-cta">Ver planta e condições →</div>
+</div>
+<div class="ub" data-id="box" onclick="openUnit('box')">
+  <span class="ubg">Disponível</span>
+  <b>Box / Garagem</b>
+  <span>Pavs. 1–3 · simples e duplos</span>
+  <em>R$&nbsp;70.000 a R$&nbsp;150.000</em>
+  <div class="ub-cta">Ver planta e condições →</div>
+</div>
+</div>
     <div class="udp" id="udp"></div>
   </div>
 </section>
@@ -332,17 +388,7 @@ var UNS=[
   {id:'sala',nome:'Sala Comercial',sub:'T&eacute;rreo &middot; &uacute;ltima dispon&iacute;vel',preco:'R$&nbsp;1.140.000',ag:'176,02 m&sup2;',ap:'114,76 m&sup2;',fl:'T&eacute;rreo &mdash; fachada principal',cfg:'Sala &middot; banheiros PNE &middot; espera copa',vmin:1140000,vmax:1140000,difs:['Fachada em pastilha brick travertino','P&eacute;-direito generoso &middot; acesso independente','Primeiro endere&ccedil;o wellness da cidade','Banheiros PNE e espera copa']},
   {id:'box',nome:'Box / Garagem',sub:'Pavs. 1&ndash;3 &middot; simples e duplos',preco:'R$&nbsp;70.000 a R$&nbsp;150.000',ag:'18&ndash;76 m&sup2;',ap:'14&ndash;57 m&sup2;',fl:'Pavimentos 1, 2 e 3',cfg:'Simples ou duplo',vmin:70000,vmax:150000,difs:['3 pavimentos de garagem coberta','Piso de concreto polido','Seguran&ccedil;a integrada'],pgto:[{t:'Box simples',v:'R$ 70.000 a R$ 80.000'},{t:'Box duplo',v:'R$ 120.000 a R$ 150.000'}]}
 ];
-(function(){
-  var ug=document.getElementById('ug');
-  UNS.forEach(function(u){
-    var d=document.createElement('div');d.className='ub';d.setAttribute('data-id',u.id);
-    d.innerHTML=(u.vendida?'<span class="ubg sold">Vendida</span>':'<span class="ubg">Dispon&iacute;vel</span>')
-      +'<b>'+u.nome+'</b><span>'+u.sub+'</span><em>'+u.preco+'</em>'
-      +(u.vendida?''  :'<div class="ub-cta">Ver planta e condi&ccedil;&otilde;es &rarr;</div>');
-    if(!u.vendida)d.onclick=function(){openUnit(this.getAttribute('data-id'));};
-    ug.appendChild(d);
-  });
-})();
+// units built in HTML;
 function openUnit(id){
   var u=null;for(var i=0;i<UNS.length;i++){if(UNS[i].id===id){u=UNS[i];break;}}
   if(!u)return;
