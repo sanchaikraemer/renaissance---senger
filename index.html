@@ -1,131 +1,112 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Renaissance</title>
+<title>Renaissance Senger</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #000;
+  font-family: 'Jost', sans-serif;
+  background: #111;
   color: #fff;
-  overflow: hidden;
 }
 
-/* LOADING */
-#loading {
+/* OVERLAY */
+#startOverlay {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: #000;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-}
-
-.bar {
-  width: 200px;
-  height: 4px;
-  background: #333;
-  margin-top: 20px;
-  overflow: hidden;
-}
-
-.bar div {
-  width: 0%;
-  height: 100%;
-  background: #fff;
-  animation: load 2.5s linear forwards;
-}
-
-@keyframes load {
-  to { width: 100%; }
-}
-
-#startBtn {
-  margin-top: 30px;
-  padding: 12px 25px;
-  background: #fff;
-  color: #000;
-  border: none;
+  z-index: 99999;
   cursor: pointer;
-  font-weight: bold;
 }
 
-/* CONTEÚDO */
-#content {
-  display: none;
-  padding: 40px 20px;
-  height: 100vh;
-  overflow-y: auto;
-  background: #111;
+#startOverlay div {
+  text-align: center;
+}
+
+#startOverlay p {
+  margin: 5px 0;
+  letter-spacing: 3px;
 }
 
 /* BOTÃO SOM */
 #soundBtn {
   position: fixed;
-  top: 15px;
-  right: 15px;
-  background: rgba(0,0,0,0.6);
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.7);
   border: none;
   color: #fff;
-  font-size: 18px;
   padding: 10px;
+  font-size: 16px;
   cursor: pointer;
+  z-index: 9999;
   display: none;
+}
+
+/* CONTEÚDO SIMPLES (SEU SITE) */
+#site {
+  padding: 40px;
+}
+
+h1 {
+  font-size: 40px;
 }
 </style>
 </head>
 
 <body>
 
-<div id="loading">
-  <h2>Carregando apresentação</h2>
-  <div class="bar"><div></div></div>
-  <button id="startBtn">Começar apresentação</button>
+<!-- OVERLAY -->
+<div id="startOverlay">
+  <div>
+    <p>RENAISSANCE</p>
+    <p>Clique para iniciar a apresentação</p>
+  </div>
 </div>
 
-<div id="content">
-  <h1>RENAISSANCE</h1>
-  <p>Apresentação do empreendimento</p>
-  <div style="height:1500px;"></div>
+<!-- SITE -->
+<div id="site">
+  <h1>Renaissance Senger</h1>
+  <p>Seu site está ativo.</p>
+  <p>A navegação continua normal com a música tocando.</p>
+
+  <div style="height:2000px;"></div>
 </div>
 
-<button id="soundBtn">🔊</button>
-
-<audio id="audio" preload="auto">
+<!-- ÁUDIO -->
+<audio id="bgMusic" preload="auto">
   <source src="who-made-who.mp3.mp3" type="audio/mpeg">
 </audio>
 
+<button id="soundBtn">🔊</button>
+
 <script>
-const startBtn = document.getElementById("startBtn");
-const loading = document.getElementById("loading");
-const content = document.getElementById("content");
-const audio = document.getElementById("audio");
-const soundBtn = document.getElementById("soundBtn");
+const overlay = document.getElementById('startOverlay');
+const music = document.getElementById('bgMusic');
+const soundBtn = document.getElementById('soundBtn');
 
-startBtn.addEventListener("click", () => {
-  loading.style.display = "none";
-  content.style.display = "block";
-  document.body.style.overflow = "auto";
-
-  audio.volume = 0.6;
-  audio.play();
-
-  soundBtn.style.display = "block";
+overlay.addEventListener('click', () => {
+  overlay.style.display = 'none';
+  music.volume = 0.6;
+  music.play();
+  soundBtn.style.display = 'block';
 });
 
-soundBtn.addEventListener("click", () => {
-  if (audio.muted) {
-    audio.muted = false;
-    soundBtn.innerText = "🔊";
+soundBtn.addEventListener('click', () => {
+  if (music.muted) {
+    music.muted = false;
+    soundBtn.innerText = '🔊';
   } else {
-    audio.muted = true;
-    soundBtn.innerText = "🔇";
+    music.muted = true;
+    soundBtn.innerText = '🔇';
   }
 });
 </script>
